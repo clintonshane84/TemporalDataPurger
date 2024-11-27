@@ -187,7 +187,7 @@ class TableCRUDOperator:
 
             update_value = data[update_column]
             update_query = f"""
-            UPDATE {table}
+            UPDATE `{table}`
             SET {update_column} = %s
             WHERE {primary_key} = %s;
             """
@@ -214,7 +214,7 @@ class TableCRUDOperator:
                 raise ValueError(f"Primary key not found for table {table}.")
 
             delete_query = f"""
-            DELETE FROM {table}
+            DELETE FROM `{table}`
             WHERE {primary_key} = %s;
             """
             cursor = self.connection.cursor()
