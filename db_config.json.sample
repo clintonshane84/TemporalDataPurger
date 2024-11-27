@@ -1,5 +1,5 @@
 {
-    "host": "localhost",
+    "host": "db_host",
     "user": "root",
     "password": "root"
 }
