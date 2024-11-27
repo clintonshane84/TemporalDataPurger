@@ -72,7 +72,7 @@ class TableCRUDOperator:
             column_default = column["COLUMN_DEFAULT"]
 
             # Skip columns with explicit default values
-            if column_default is not None:
+            if column_default not in [None, '']:
                 continue
 
             # Generate data based on type
@@ -148,7 +148,7 @@ class TableCRUDOperator:
         try:
             primary_key = self.primary_keys.get(table)
             column_names = [col["COLUMN_NAME"]
-                            for col in columns if col["COLUMN_NAME"] != primary_key and col["COLUMN_DEFAULT"] is None]
+                            for col in columns if col["COLUMN_NAME"] != primary_key and (col["COLUMN_DEFAULT"] in [None, ''])]
             data = self.generate_fake_data(columns)
 
             # Filter out primary key and default columns
@@ -181,7 +181,7 @@ class TableCRUDOperator:
             # Generate data and pick a column to update
             data = self.generate_fake_data(columns)
             update_column = next(
-                (col["COLUMN_NAME"] for col in columns if col["COLUMN_NAME"] != primary_key and col["COLUMN_DEFAULT"] is None), None)
+                (col["COLUMN_NAME"] for col in columns if col["COLUMN_NAME"] != primary_key and (col["COLUMN_DEFAULT"] in [None, ''])), None)
             if not update_column:
                 raise ValueError("No column available for update.")
 
