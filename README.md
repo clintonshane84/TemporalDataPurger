@@ -1,4 +1,4 @@
-# TemporalDataPurger
+# temporal-data-purger
 
 Generate **reviewable** MySQL `DELETE` statements to safely purge historical/temporal data across one or more databases—without executing any destructive SQL automatically.
 
@@ -9,7 +9,7 @@ Generate **reviewable** MySQL `DELETE` statements to safely purge historical/tem
 
 ## Why this exists
 
-Large MySQL databases often accumulate old rows that are no longer needed. Purging them can be risky if you pick the wrong timestamp column or touch audit/update fields. **TemporalDataPurger** analyzes table schemas to identify the **most likely creation timestamp** per table, then generates targeted `DELETE` statements up to a cut-off date for you to review and run yourself.
+Large MySQL databases often accumulate old rows that are no longer needed. Purging them can be risky if you pick the wrong timestamp column or touch audit/update fields. **temporal-data-purger** analyzes table schemas to identify the **most likely creation timestamp** per table, then generates targeted `DELETE` statements up to a cut-off date for you to review and run yourself.
 
 **This tool does *not* execute any DELETEs.** It only writes `.sql` files you can review, test, and apply using your own process.
 
@@ -41,7 +41,7 @@ Large MySQL databases often accumulate old rows that are no longer needed. Purgi
 ## Repository layout
 
 ```
-TemporalDataPurger/
+temporal-data-purger/
 ├─ main.py                 # CLI entrypoint
 ├─ schema_analyzer.py      # Finds the most appropriate date/datetime column per table
 ├─ query_generator.py      # Builds DELETE statements
